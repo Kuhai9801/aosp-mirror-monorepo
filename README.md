@@ -18,7 +18,7 @@ Important source notes:
   from the GitHub organization.
 - `manifest/aosp-mirror-repos.txt` is a compact name list.
 - `manifest/aosp-mirror-lock.tsv` records the last sync status and target SHA.
-- `repos/<name>` is where each mirror repository is checked out as a submodule.
+- `repos/<name>` stores submodule gitlinks for each mirror repository.
 - `scripts/update_aosp_mirror.py` refreshes metadata and fast-forwards submodule
   pointers.
 
@@ -36,12 +36,19 @@ Materialize and fast-forward all tracked mirror repositories:
 python3 scripts/update_aosp_mirror.py
 ```
 
+Fast-forward gitlink pointers without cloning repository contents:
+
+```sh
+python3 scripts/update_aosp_mirror.py --gitlinks-only
+```
+
 ## CI
 
 `.github/workflows/fast-forward.yml` runs on `*/5 * * * *` and by manual
 dispatch. The job refreshes the mirror metadata, fast-forwards each submodule to
-its GitHub default branch when possible, commits changed pointers, and pushes
-back to this repository.
+its GitHub default branch when possible, commits changed gitlink pointers, and
+pushes back to this repository. It uses remote branch SHAs instead of cloning all
+repository contents on every run.
 
 GitHub scheduled workflows are best-effort; the cron asks for every 5 minutes,
 but GitHub can delay or skip runs during load or after repository inactivity.

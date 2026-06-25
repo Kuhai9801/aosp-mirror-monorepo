@@ -1,0 +1,400 @@
+[submodule ".allstar"]
+	path = repos/.allstar
+	url = https://github.com/aosp-mirror/.allstar.git
+	branch = master
+[submodule ".github"]
+	path = repos/.github
+	url = https://github.com/aosp-mirror/.github.git
+	branch = master
+[submodule "aosp-mirror.github.io"]
+	path = repos/aosp-mirror.github.io
+	url = https://github.com/aosp-mirror/aosp-mirror.github.io.git
+	branch = master
+[submodule "kernel_common"]
+	path = repos/kernel_common
+	url = https://github.com/aosp-mirror/kernel_common.git
+	branch = android-mainline
+[submodule "kernel_msm"]
+	path = repos/kernel_msm
+	url = https://github.com/aosp-mirror/kernel_msm.git
+	branch = main
+[submodule "platform_bionic"]
+	path = repos/platform_bionic
+	url = https://github.com/aosp-mirror/platform_bionic.git
+	branch = main
+[submodule "platform_build"]
+	path = repos/platform_build
+	url = https://github.com/aosp-mirror/platform_build.git
+	branch = main
+[submodule "platform_dalvik"]
+	path = repos/platform_dalvik
+	url = https://github.com/aosp-mirror/platform_dalvik.git
+	branch = main
+[submodule "platform_development"]
+	path = repos/platform_development
+	url = https://github.com/aosp-mirror/platform_development.git
+	branch = main
+[submodule "platform_external_aes"]
+	path = repos/platform_external_aes
+	url = https://github.com/aosp-mirror/platform_external_aes.git
+	branch = main
+[submodule "platform_external_apache-http"]
+	path = repos/platform_external_apache-http
+	url = https://github.com/aosp-mirror/platform_external_apache-http.git
+	branch = main
+[submodule "platform_external_bluez"]
+	path = repos/platform_external_bluez
+	url = https://github.com/aosp-mirror/platform_external_bluez.git
+	branch = main
+[submodule "platform_external_clearsilver"]
+	path = repos/platform_external_clearsilver
+	url = https://github.com/aosp-mirror/platform_external_clearsilver.git
+	branch = main
+[submodule "platform_external_dbus"]
+	path = repos/platform_external_dbus
+	url = https://github.com/aosp-mirror/platform_external_dbus.git
+	branch = main
+[submodule "platform_external_dhcpcd"]
+	path = repos/platform_external_dhcpcd
+	url = https://github.com/aosp-mirror/platform_external_dhcpcd.git
+	branch = main
+[submodule "platform_external_dropbear"]
+	path = repos/platform_external_dropbear
+	url = https://github.com/aosp-mirror/platform_external_dropbear.git
+	branch = main
+[submodule "platform_external_elfcopy"]
+	path = repos/platform_external_elfcopy
+	url = https://github.com/aosp-mirror/platform_external_elfcopy.git
+	branch = main
+[submodule "platform_external_elfutils"]
+	path = repos/platform_external_elfutils
+	url = https://github.com/aosp-mirror/platform_external_elfutils.git
+	branch = main
+[submodule "platform_external_emma"]
+	path = repos/platform_external_emma
+	url = https://github.com/aosp-mirror/platform_external_emma.git
+	branch = main
+[submodule "platform_external_esd"]
+	path = repos/platform_external_esd
+	url = https://github.com/aosp-mirror/platform_external_esd.git
+	branch = main
+[submodule "platform_external_expat"]
+	path = repos/platform_external_expat
+	url = https://github.com/aosp-mirror/platform_external_expat.git
+	branch = main
+[submodule "platform_external_fdlibm"]
+	path = repos/platform_external_fdlibm
+	url = https://github.com/aosp-mirror/platform_external_fdlibm.git
+	branch = main
+[submodule "platform_external_freetype"]
+	path = repos/platform_external_freetype
+	url = https://github.com/aosp-mirror/platform_external_freetype.git
+	branch = main
+[submodule "platform_external_gdata"]
+	path = repos/platform_external_gdata
+	url = https://github.com/aosp-mirror/platform_external_gdata.git
+	branch = main
+[submodule "platform_external_giflib"]
+	path = repos/platform_external_giflib
+	url = https://github.com/aosp-mirror/platform_external_giflib.git
+	branch = main
+[submodule "platform_external_googleclient"]
+	path = repos/platform_external_googleclient
+	url = https://github.com/aosp-mirror/platform_external_googleclient.git
+	branch = main
+[submodule "platform_external_icu4c"]
+	path = repos/platform_external_icu4c
+	url = https://github.com/aosp-mirror/platform_external_icu4c.git
+	branch = main
+[submodule "platform_external_iptables"]
+	path = repos/platform_external_iptables
+	url = https://github.com/aosp-mirror/platform_external_iptables.git
+	branch = main
+[submodule "platform_external_jdiff"]
+	path = repos/platform_external_jdiff
+	url = https://github.com/aosp-mirror/platform_external_jdiff.git
+	branch = main
+[submodule "platform_external_jhead"]
+	path = repos/platform_external_jhead
+	url = https://github.com/aosp-mirror/platform_external_jhead.git
+	branch = main
+[submodule "platform_external_jpeg"]
+	path = repos/platform_external_jpeg
+	url = https://github.com/aosp-mirror/platform_external_jpeg.git
+	branch = main
+[submodule "platform_external_libffi"]
+	path = repos/platform_external_libffi
+	url = https://github.com/aosp-mirror/platform_external_libffi.git
+	branch = main
+[submodule "platform_external_libpcap"]
+	path = repos/platform_external_libpcap
+	url = https://github.com/aosp-mirror/platform_external_libpcap.git
+	branch = main
+[submodule "platform_external_libpng"]
+	path = repos/platform_external_libpng
+	url = https://github.com/aosp-mirror/platform_external_libpng.git
+	branch = main
+[submodule "platform_external_libxml2"]
+	path = repos/platform_external_libxml2
+	url = https://github.com/aosp-mirror/platform_external_libxml2.git
+	branch = main
+[submodule "platform_external_netcat"]
+	path = repos/platform_external_netcat
+	url = https://github.com/aosp-mirror/platform_external_netcat.git
+	branch = main
+[submodule "platform_external_netperf"]
+	path = repos/platform_external_netperf
+	url = https://github.com/aosp-mirror/platform_external_netperf.git
+	branch = main
+[submodule "platform_external_neven"]
+	path = repos/platform_external_neven
+	url = https://github.com/aosp-mirror/platform_external_neven.git
+	branch = main
+[submodule "platform_external_opencore"]
+	path = repos/platform_external_opencore
+	url = https://github.com/aosp-mirror/platform_external_opencore.git
+	branch = main
+[submodule "platform_external_openssl"]
+	path = repos/platform_external_openssl
+	url = https://github.com/aosp-mirror/platform_external_openssl.git
+	branch = main
+[submodule "platform_external_oprofile"]
+	path = repos/platform_external_oprofile
+	url = https://github.com/aosp-mirror/platform_external_oprofile.git
+	branch = main
+[submodule "platform_external_ping"]
+	path = repos/platform_external_ping
+	url = https://github.com/aosp-mirror/platform_external_ping.git
+	branch = main
+[submodule "platform_external_ppp"]
+	path = repos/platform_external_ppp
+	url = https://github.com/aosp-mirror/platform_external_ppp.git
+	branch = main
+[submodule "platform_external_protobuf"]
+	path = repos/platform_external_protobuf
+	url = https://github.com/aosp-mirror/platform_external_protobuf.git
+	branch = main
+[submodule "platform_external_qemu"]
+	path = repos/platform_external_qemu
+	url = https://github.com/aosp-mirror/platform_external_qemu.git
+	branch = main
+[submodule "platform_external_safe-iop"]
+	path = repos/platform_external_safe-iop
+	url = https://github.com/aosp-mirror/platform_external_safe-iop.git
+	branch = main
+[submodule "platform_external_skia"]
+	path = repos/platform_external_skia
+	url = https://github.com/aosp-mirror/platform_external_skia.git
+	branch = main
+[submodule "platform_external_sonivox"]
+	path = repos/platform_external_sonivox
+	url = https://github.com/aosp-mirror/platform_external_sonivox.git
+	branch = main
+[submodule "platform_external_sqlite"]
+	path = repos/platform_external_sqlite
+	url = https://github.com/aosp-mirror/platform_external_sqlite.git
+	branch = main
+[submodule "platform_external_srec"]
+	path = repos/platform_external_srec
+	url = https://github.com/aosp-mirror/platform_external_srec.git
+	branch = main
+[submodule "platform_external_strace"]
+	path = repos/platform_external_strace
+	url = https://github.com/aosp-mirror/platform_external_strace.git
+	branch = main
+[submodule "platform_external_tagsoup"]
+	path = repos/platform_external_tagsoup
+	url = https://github.com/aosp-mirror/platform_external_tagsoup.git
+	branch = main
+[submodule "platform_external_tcpdump"]
+	path = repos/platform_external_tcpdump
+	url = https://github.com/aosp-mirror/platform_external_tcpdump.git
+	branch = main
+[submodule "platform_external_tinyxml"]
+	path = repos/platform_external_tinyxml
+	url = https://github.com/aosp-mirror/platform_external_tinyxml.git
+	branch = main
+[submodule "platform_external_tremor"]
+	path = repos/platform_external_tremor
+	url = https://github.com/aosp-mirror/platform_external_tremor.git
+	branch = main
+[submodule "platform_external_webkit"]
+	path = repos/platform_external_webkit
+	url = https://github.com/aosp-mirror/platform_external_webkit.git
+	branch = main
+[submodule "platform_external_wpa_supplicant"]
+	path = repos/platform_external_wpa_supplicant
+	url = https://github.com/aosp-mirror/platform_external_wpa_supplicant.git
+	branch = main
+[submodule "platform_external_yaffs2"]
+	path = repos/platform_external_yaffs2
+	url = https://github.com/aosp-mirror/platform_external_yaffs2.git
+	branch = main
+[submodule "platform_external_zlib"]
+	path = repos/platform_external_zlib
+	url = https://github.com/aosp-mirror/platform_external_zlib.git
+	branch = main
+[submodule "platform_frameworks_base"]
+	path = repos/platform_frameworks_base
+	url = https://github.com/aosp-mirror/platform_frameworks_base.git
+	branch = main
+[submodule "platform_frameworks_opt_com.google.android"]
+	path = repos/platform_frameworks_opt_com.google.android
+	url = https://github.com/aosp-mirror/platform_frameworks_opt_com.google.android.git
+	branch = main
+[submodule "platform_frameworks_policies_base"]
+	path = repos/platform_frameworks_policies_base
+	url = https://github.com/aosp-mirror/platform_frameworks_policies_base.git
+	branch = main
+[submodule "platform_frameworks_support"]
+	path = repos/platform_frameworks_support
+	url = https://github.com/aosp-mirror/platform_frameworks_support.git
+	branch = master
+[submodule "platform_hardware_libhardware"]
+	path = repos/platform_hardware_libhardware
+	url = https://github.com/aosp-mirror/platform_hardware_libhardware.git
+	branch = main
+[submodule "platform_hardware_ril"]
+	path = repos/platform_hardware_ril
+	url = https://github.com/aosp-mirror/platform_hardware_ril.git
+	branch = main
+[submodule "platform_manifest"]
+	path = repos/platform_manifest
+	url = https://github.com/aosp-mirror/platform_manifest.git
+	branch = android-latest-release
+[submodule "platform_packages_apps_alarmclock"]
+	path = repos/platform_packages_apps_alarmclock
+	url = https://github.com/aosp-mirror/platform_packages_apps_alarmclock.git
+	branch = main
+[submodule "platform_packages_apps_browser"]
+	path = repos/platform_packages_apps_browser
+	url = https://github.com/aosp-mirror/platform_packages_apps_browser.git
+	branch = main
+[submodule "platform_packages_apps_calculator"]
+	path = repos/platform_packages_apps_calculator
+	url = https://github.com/aosp-mirror/platform_packages_apps_calculator.git
+	branch = main
+[submodule "platform_packages_apps_calendar"]
+	path = repos/platform_packages_apps_calendar
+	url = https://github.com/aosp-mirror/platform_packages_apps_calendar.git
+	branch = main
+[submodule "platform_packages_apps_camera"]
+	path = repos/platform_packages_apps_camera
+	url = https://github.com/aosp-mirror/platform_packages_apps_camera.git
+	branch = main
+[submodule "platform_packages_apps_contacts"]
+	path = repos/platform_packages_apps_contacts
+	url = https://github.com/aosp-mirror/platform_packages_apps_contacts.git
+	branch = main
+[submodule "platform_packages_apps_email"]
+	path = repos/platform_packages_apps_email
+	url = https://github.com/aosp-mirror/platform_packages_apps_email.git
+	branch = main
+[submodule "platform_packages_apps_googlesearch"]
+	path = repos/platform_packages_apps_googlesearch
+	url = https://github.com/aosp-mirror/platform_packages_apps_googlesearch.git
+	branch = main
+[submodule "platform_packages_apps_htmlviewer"]
+	path = repos/platform_packages_apps_htmlviewer
+	url = https://github.com/aosp-mirror/platform_packages_apps_htmlviewer.git
+	branch = main
+[submodule "platform_packages_apps_im"]
+	path = repos/platform_packages_apps_im
+	url = https://github.com/aosp-mirror/platform_packages_apps_im.git
+	branch = main
+[submodule "platform_packages_apps_launcher"]
+	path = repos/platform_packages_apps_launcher
+	url = https://github.com/aosp-mirror/platform_packages_apps_launcher.git
+	branch = main
+[submodule "platform_packages_apps_mms"]
+	path = repos/platform_packages_apps_mms
+	url = https://github.com/aosp-mirror/platform_packages_apps_mms.git
+	branch = main
+[submodule "platform_packages_apps_music"]
+	path = repos/platform_packages_apps_music
+	url = https://github.com/aosp-mirror/platform_packages_apps_music.git
+	branch = main
+[submodule "platform_packages_apps_packageinstaller"]
+	path = repos/platform_packages_apps_packageinstaller
+	url = https://github.com/aosp-mirror/platform_packages_apps_packageinstaller.git
+	branch = main
+[submodule "platform_packages_apps_phone"]
+	path = repos/platform_packages_apps_phone
+	url = https://github.com/aosp-mirror/platform_packages_apps_phone.git
+	branch = main
+[submodule "platform_packages_apps_settings"]
+	path = repos/platform_packages_apps_settings
+	url = https://github.com/aosp-mirror/platform_packages_apps_settings.git
+	branch = main
+[submodule "platform_packages_apps_soundrecorder"]
+	path = repos/platform_packages_apps_soundrecorder
+	url = https://github.com/aosp-mirror/platform_packages_apps_soundrecorder.git
+	branch = main
+[submodule "platform_packages_apps_stk"]
+	path = repos/platform_packages_apps_stk
+	url = https://github.com/aosp-mirror/platform_packages_apps_stk.git
+	branch = main
+[submodule "platform_packages_apps_sync"]
+	path = repos/platform_packages_apps_sync
+	url = https://github.com/aosp-mirror/platform_packages_apps_sync.git
+	branch = main
+[submodule "platform_packages_apps_updater"]
+	path = repos/platform_packages_apps_updater
+	url = https://github.com/aosp-mirror/platform_packages_apps_updater.git
+	branch = main
+[submodule "platform_packages_apps_voicedialer"]
+	path = repos/platform_packages_apps_voicedialer
+	url = https://github.com/aosp-mirror/platform_packages_apps_voicedialer.git
+	branch = main
+[submodule "platform_packages_providers_calendarprovider"]
+	path = repos/platform_packages_providers_calendarprovider
+	url = https://github.com/aosp-mirror/platform_packages_providers_calendarprovider.git
+	branch = main
+[submodule "platform_packages_providers_contactsprovider"]
+	path = repos/platform_packages_providers_contactsprovider
+	url = https://github.com/aosp-mirror/platform_packages_providers_contactsprovider.git
+	branch = main
+[submodule "platform_packages_providers_downloadprovider"]
+	path = repos/platform_packages_providers_downloadprovider
+	url = https://github.com/aosp-mirror/platform_packages_providers_downloadprovider.git
+	branch = main
+[submodule "platform_packages_providers_drmprovider"]
+	path = repos/platform_packages_providers_drmprovider
+	url = https://github.com/aosp-mirror/platform_packages_providers_drmprovider.git
+	branch = main
+[submodule "platform_packages_providers_googlecontactsprovider"]
+	path = repos/platform_packages_providers_googlecontactsprovider
+	url = https://github.com/aosp-mirror/platform_packages_providers_googlecontactsprovider.git
+	branch = main
+[submodule "platform_packages_providers_improvider"]
+	path = repos/platform_packages_providers_improvider
+	url = https://github.com/aosp-mirror/platform_packages_providers_improvider.git
+	branch = main
+[submodule "platform_packages_providers_mediaprovider"]
+	path = repos/platform_packages_providers_mediaprovider
+	url = https://github.com/aosp-mirror/platform_packages_providers_mediaprovider.git
+	branch = main
+[submodule "platform_packages_providers_telephonyprovider"]
+	path = repos/platform_packages_providers_telephonyprovider
+	url = https://github.com/aosp-mirror/platform_packages_providers_telephonyprovider.git
+	branch = main
+[submodule "platform_prebuilt"]
+	path = repos/platform_prebuilt
+	url = https://github.com/aosp-mirror/platform_prebuilt.git
+	branch = main
+[submodule "platform_system_bluetooth"]
+	path = repos/platform_system_bluetooth
+	url = https://github.com/aosp-mirror/platform_system_bluetooth.git
+	branch = main
+[submodule "platform_system_core"]
+	path = repos/platform_system_core
+	url = https://github.com/aosp-mirror/platform_system_core.git
+	branch = main
+[submodule "platform_system_wlan_ti"]
+	path = repos/platform_system_wlan_ti
+	url = https://github.com/aosp-mirror/platform_system_wlan_ti.git
+	branch = main
+[submodule "tools_repo"]
+	path = repos/tools_repo
+	url = https://github.com/aosp-mirror/tools_repo.git
+	branch = main

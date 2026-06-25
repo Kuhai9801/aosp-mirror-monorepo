@@ -31,7 +31,7 @@ jobs:
       - name: Refresh mirror submodules
         env:
           GITHUB_TOKEN: ${{ github.token }}
-        run: python3 scripts/update_aosp_mirror.py
+        run: python3 scripts/update_aosp_mirror.py --gitlinks-only
 
       - name: Commit fast-forward updates
         run: |

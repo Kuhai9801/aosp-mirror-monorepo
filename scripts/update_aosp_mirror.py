@@ -8,7 +8,6 @@ import json
 import os
 import subprocess
 import sys
-import time
 import urllib.error
 import urllib.parse
 import urllib.request
@@ -105,7 +104,6 @@ def write_manifest(root: Path, records: list[dict[str, object]]) -> None:
     payload = {
         "source": "https://github.com/aosp-mirror",
         "canonical_aosp_source": "https://android.googlesource.com/",
-        "generated_at_unix": int(time.time()),
         "repo_count": len(records),
         "repos": records,
     }
@@ -177,6 +175,13 @@ def fetch_branch(path: Path, branch: str, deepen: int | None = None) -> None:
     run(cmd)
 
 
+def ls_remote(url: str, branch: str) -> str | None:
+    proc = run(["git", "ls-remote", "--heads", url, f"refs/heads/{branch}"], check=False)
+    if proc.returncode != 0 or not proc.stdout.strip():
+        return None
+    return proc.stdout.split()[0]
+
+
 def rev_parse(path: Path, rev: str) -> str | None:
     proc = run(["git", "-C", str(path), "rev-parse", "--verify", rev], check=False)
     if proc.returncode != 0:
@@ -187,6 +192,72 @@ def rev_parse(path: Path, rev: str) -> str | None:
 def is_ancestor(path: Path, current: str, target: str) -> bool:
     proc = run(["git", "-C", str(path), "merge-base", "--is-ancestor", current, target], check=False)
     return proc.returncode == 0
+
+
+def head_gitlink(root: Path, path: Path) -> str | None:
+    proc = run(["git", "ls-tree", "HEAD", str(path.relative_to(root))], cwd=root, check=False)
+    if proc.returncode != 0 or not proc.stdout.strip():
+        return None
+    parts = proc.stdout.split()
+    if len(parts) < 3 or parts[1] != "commit":
+        return None
+    return parts[2]
+
+
+def github_compare(owner: str, repo: str, current: str, target: str, token: str | None) -> str:
+    payload, _headers = github_request(f"/repos/{owner}/{repo}/compare/{current}...{target}", token)
+    if not isinstance(payload, dict) or "status" not in payload:
+        raise RuntimeError(f"unexpected compare response for {repo}: {payload!r}")
+    return str(payload["status"])
+
+
+def configure_gitmodule(root: Path, name: str, branch: str, path: Path, url: str) -> None:
+    relpath = str(path.relative_to(root))
+    run(["git", "config", "-f", ".gitmodules", f"submodule.{name}.path", relpath], cwd=root)
+    run(["git", "config", "-f", ".gitmodules", f"submodule.{name}.url", url], cwd=root)
+    run(["git", "config", "-f", ".gitmodules", f"submodule.{name}.branch", branch], cwd=root)
+
+
+def update_gitlink(
+    root: Path,
+    owner: str,
+    record: dict[str, object],
+    repo_dir: str,
+    protocol: str,
+    token: str | None,
+) -> dict[str, object]:
+    name = str(record["name"])
+    branch = str(record["default_branch"])
+    url_key = "ssh_url" if protocol == "ssh" else "clone_url"
+    url = str(record[url_key])
+    path = root / repo_dir / name
+
+    configure_gitmodule(root, name, branch, path, url)
+    target = ls_remote(url, branch)
+    if target is None:
+        return {"name": name, "branch": branch, "status": "missing-branch"}
+
+    current = head_gitlink(root, path)
+    if current and current != target:
+        compare_status = github_compare(owner, name, current, target, token)
+        if compare_status not in {"behind", "identical"}:
+            return {
+                "name": name,
+                "branch": branch,
+                "status": f"non-fast-forward:{compare_status}",
+                "current": current,
+                "target": target,
+            }
+
+    run(["git", "update-index", "--add", "--cacheinfo", "160000", target, str(path.relative_to(root))], cwd=root)
+    run(["git", "add", ".gitmodules"], cwd=root)
+    return {
+        "name": name,
+        "branch": branch,
+        "status": "updated" if current != target else "unchanged",
+        "current": current,
+        "target": target,
+    }
 
 
 def update_submodule(root: Path, record: dict[str, object], repo_dir: str, protocol: str) -> dict[str, object]:
@@ -246,6 +317,7 @@ def main() -> int:
     parser.add_argument("--repo-dir", default=DEFAULT_REPO_DIR)
     parser.add_argument("--protocol", choices=("https", "ssh"), default="https")
     parser.add_argument("--metadata-only", action="store_true")
+    parser.add_argument("--gitlinks-only", action="store_true", help="update submodule gitlinks without cloning")
     parser.add_argument("--exclude-infra", action="store_true", help="skip .github and .allstar")
     parser.add_argument("--limit", type=int, default=0, help="limit repos for smoke testing")
     args = parser.parse_args()
@@ -262,7 +334,18 @@ def main() -> int:
 
     write_manifest(root, records)
     updates: list[dict[str, object]] = []
-    if not args.metadata_only:
+    if args.metadata_only and args.gitlinks_only:
+        raise RuntimeError("--metadata-only and --gitlinks-only cannot be used together")
+
+    if args.gitlinks_only:
+        for record in records:
+            print(f"::group::gitlink {record['name']}")
+            try:
+                updates.append(update_gitlink(root, args.owner, record, args.repo_dir, args.protocol, token))
+            finally:
+                print("::endgroup::")
+        write_lock(root, updates)
+    elif not args.metadata_only:
         for record in records:
             print(f"::group::sync {record['name']}")
             try:
