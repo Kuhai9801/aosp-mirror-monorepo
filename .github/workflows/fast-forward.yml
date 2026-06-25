@@ -1,0 +1,45 @@
+name: Fast-forward AOSP mirror
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: aosp-mirror-fast-forward
+  cancel-in-progress: false
+
+jobs:
+  fast-forward:
+    runs-on: ubuntu-latest
+    timeout-minutes: 45
+    steps:
+      - name: Checkout superproject
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+          submodules: false
+
+      - name: Configure git identity
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+
+      - name: Refresh mirror submodules
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        run: python3 scripts/update_aosp_mirror.py
+
+      - name: Commit fast-forward updates
+        run: |
+          if git diff --cached --quiet && git diff --quiet; then
+            echo "No mirror updates."
+            exit 0
+          fi
+          git status --short
+          git add .gitmodules manifest repos
+          git commit -m "Fast-forward AOSP mirror pointers"
+          git push
