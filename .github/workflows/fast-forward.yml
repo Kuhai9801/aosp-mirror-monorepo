@@ -1,4 +1,4 @@
-name: Fast-forward AOSP mirror
+name: Sync AOSP mirror
 
 on:
   schedule:
@@ -9,11 +9,11 @@ permissions:
   contents: write
 
 concurrency:
-  group: aosp-mirror-fast-forward
+  group: aosp-mirror-sync
   cancel-in-progress: false
 
 jobs:
-  fast-forward:
+  sync:
     runs-on: ubuntu-latest
     timeout-minutes: 45
     steps:
@@ -33,13 +33,72 @@ jobs:
           GITHUB_TOKEN: ${{ github.token }}
         run: python3 scripts/update_aosp_mirror.py --gitlinks-only
 
-      - name: Commit fast-forward updates
+      - name: Refresh vendored scan sources
+        run: |
+          set -euo pipefail
+          tmp="$(mktemp -d)"
+          trap 'rm -rf "$tmp"' EXIT
+
+          git clone --depth 1 --branch main https://github.com/aosp-mirror/platform_frameworks_base.git "$tmp/platform_frameworks_base"
+          git clone --depth 1 --branch main https://github.com/aosp-mirror/platform_system_core.git "$tmp/platform_system_core"
+
+          git config -f .gitmodules --remove-section submodule.platform_frameworks_base || true
+          git config -f .gitmodules --remove-section submodule.platform_system_core || true
+
+          rm -rf repos/platform_frameworks_base repos/platform_system_core
+          mkdir -p repos/platform_frameworks_base repos/platform_system_core
+          tar -C "$tmp/platform_frameworks_base" --exclude=.git -cf - \
+            core/java/android/app/AppOpsManager.java \
+            core/java/android/app/admin \
+            core/java/android/content/pm \
+            core/java/android/permission \
+            core/java/android/security \
+            packages/SettingsProvider \
+            services/core/java/com/android/server/accounts \
+            services/core/java/com/android/server/appop \
+            services/core/java/com/android/server/biometrics \
+            services/core/java/com/android/server/locksettings \
+            services/core/java/com/android/server/permission \
+            services/core/java/com/android/server/pm \
+            services/core/java/com/android/server/policy \
+            services/core/java/com/android/server/role \
+            services/core/java/com/android/server/security \
+            services/core/java/com/android/server/uri \
+            | tar -C repos/platform_frameworks_base -xf -
+          tar -C "$tmp/platform_system_core" --exclude=.git -cf - . | tar -C repos/platform_system_core -xf -
+
+          frameworks_sha="$(git -C "$tmp/platform_frameworks_base" rev-parse HEAD)"
+          system_core_sha="$(git -C "$tmp/platform_system_core" rev-parse HEAD)"
+          python3 - "$frameworks_sha" "$system_core_sha" <<'PY'
+          from pathlib import Path
+          import re
+          import sys
+
+          frameworks_sha, system_core_sha = sys.argv[1:3]
+          path = Path("README.md")
+          text = path.read_text()
+          text = re.sub(
+              r"(platform_frameworks_base`: `repos/platform_frameworks_base` at upstream\n  `main` commit `)[0-9a-f]{40}(`)",
+              rf"\g<1>{frameworks_sha}\2",
+              text,
+          )
+          text = re.sub(
+              r"(platform_system_core`: `repos/platform_system_core` at upstream `main`\n  commit `)[0-9a-f]{40}(`)",
+              rf"\g<1>{system_core_sha}\2",
+              text,
+          )
+          path.write_text(text)
+          PY
+
+          git add .gitmodules manifest README.md
+          git add -A -f repos/platform_frameworks_base repos/platform_system_core
+
+      - name: Commit sync updates
         run: |
           if git diff --cached --quiet && git diff --quiet; then
             echo "No mirror updates."
             exit 0
           fi
           git status --short
-          git add .gitmodules manifest repos
-          git commit -m "Fast-forward AOSP mirror pointers"
+          git commit -m "Sync AOSP mirror source"
           git push

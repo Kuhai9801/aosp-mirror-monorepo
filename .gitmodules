@@ -234,10 +234,6 @@
 	path = repos/platform_external_zlib
 	url = https://github.com/aosp-mirror/platform_external_zlib.git
 	branch = main
-[submodule "platform_frameworks_base"]
-	path = repos/platform_frameworks_base
-	url = https://github.com/aosp-mirror/platform_frameworks_base.git
-	branch = main
 [submodule "platform_frameworks_opt_com.google.android"]
 	path = repos/platform_frameworks_opt_com.google.android
 	url = https://github.com/aosp-mirror/platform_frameworks_opt_com.google.android.git
@@ -385,10 +381,6 @@
 [submodule "platform_system_bluetooth"]
 	path = repos/platform_system_bluetooth
 	url = https://github.com/aosp-mirror/platform_system_bluetooth.git
-	branch = main
-[submodule "platform_system_core"]
-	path = repos/platform_system_core
-	url = https://github.com/aosp-mirror/platform_system_core.git
 	branch = main
 [submodule "platform_system_wlan_ti"]
 	path = repos/platform_system_wlan_ti
