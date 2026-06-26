@@ -47,24 +47,11 @@ jobs:
 
           rm -rf repos/platform_frameworks_base repos/platform_system_core
           mkdir -p repos/platform_frameworks_base repos/platform_system_core
-          tar -C "$tmp/platform_frameworks_base" --exclude=.git -cf - \
-            core/java/android/app/AppOpsManager.java \
-            core/java/android/app/admin \
-            core/java/android/content/pm \
-            core/java/android/permission \
-            core/java/android/security \
-            packages/SettingsProvider \
-            services/core/java/com/android/server/accounts \
-            services/core/java/com/android/server/appop \
-            services/core/java/com/android/server/biometrics \
-            services/core/java/com/android/server/locksettings \
-            services/core/java/com/android/server/permission \
-            services/core/java/com/android/server/pm \
-            services/core/java/com/android/server/policy \
-            services/core/java/com/android/server/role \
-            services/core/java/com/android/server/security \
-            services/core/java/com/android/server/uri \
-            | tar -C repos/platform_frameworks_base -xf -
+          tar -C "$tmp/platform_frameworks_base" \
+            --exclude=.git \
+            --exclude='cmds/incidentd/testdata/morethan96MB.txt' \
+            --exclude='packages/SettingsLib/Spa/gradle/wrapper/gradle-8.11.1-bin.zip' \
+            -cf - . | tar -C repos/platform_frameworks_base -xf -
           tar -C "$tmp/platform_system_core" --exclude=.git -cf - . | tar -C repos/platform_system_core -xf -
 
           frameworks_sha="$(git -C "$tmp/platform_frameworks_base" rev-parse HEAD)"

@@ -22,8 +22,9 @@ Important source notes:
 - `repos/<name>` stores submodule gitlinks for most mirror repositories.
 - `repos/platform_frameworks_base` and `repos/platform_system_core` are vendored
   scan source trees so default-branch-only scanners can inspect those components
-  without initializing submodules. `platform_frameworks_base` is a curated
-  security slice, not the full upstream tree.
+  without initializing submodules. `platform_frameworks_base` mirrors the full
+  upstream tree except for files GitHub will not accept because they are over
+  100 MB.
 - `scripts/update_aosp_mirror.py` refreshes metadata and fast-forwards submodule
   pointers.
 
@@ -68,23 +69,9 @@ scope without checking the program language.
 
 The default branch vendors these components for Codex Security scans:
 
-- `platform_frameworks_base`: `repos/platform_frameworks_base` at upstream
-  `main` commit `1cdfff555f4a21f71ccc978290e2e212e2f8b168`, limited to:
-  - `core/java/android/app/AppOpsManager.java`
-  - `core/java/android/app/admin`
-  - `core/java/android/content/pm`
-  - `core/java/android/permission`
-  - `core/java/android/security`
-  - `packages/SettingsProvider`
-  - `services/core/java/com/android/server/accounts`
-  - `services/core/java/com/android/server/appop`
-  - `services/core/java/com/android/server/biometrics`
-  - `services/core/java/com/android/server/locksettings`
-  - `services/core/java/com/android/server/permission`
-  - `services/core/java/com/android/server/pm`
-  - `services/core/java/com/android/server/policy`
-  - `services/core/java/com/android/server/role`
-  - `services/core/java/com/android/server/security`
-  - `services/core/java/com/android/server/uri`
+- `platform_frameworks_base`: full `repos/platform_frameworks_base` at upstream
+  `main` commit `1cdfff555f4a21f71ccc978290e2e212e2f8b168`, excluding:
+  - `cmds/incidentd/testdata/morethan96MB.txt`
+  - `packages/SettingsLib/Spa/gradle/wrapper/gradle-8.11.1-bin.zip`
 - `platform_system_core`: full `repos/platform_system_core` at upstream `main`
   commit `a3b721a32242006b59cb12bd62c9133632af3a2d`
